@@ -5,7 +5,7 @@ import com.company.operations.Operation;
 
 public class OpDiv implements Operation {
     @Override
-    public double doOperation(double a, double b) {
+    public int doOperation(int a, int b) {
         return a / b;
     }
 }

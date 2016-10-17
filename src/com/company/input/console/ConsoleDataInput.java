@@ -7,11 +7,11 @@ import com.company.input.DataInput;
 
 public class ConsoleDataInput implements DataInput{
     @Override
-    public Double getDouble() {
+    public Integer getInteger() {
         String inputLine;
         Scanner cs = new Scanner(System.in);
         inputLine = cs.nextLine();
-        return Double.parseDouble(inputLine);
+        return Integer.parseInt(inputLine);
     }
 
     @Override

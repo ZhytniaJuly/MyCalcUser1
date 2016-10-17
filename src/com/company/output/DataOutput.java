@@ -2,5 +2,6 @@ package com.company.output;
 
 
 public interface DataOutput {
-    void Output(String outLine);
+    void outputRez(Integer outLine , Integer sc);
+    void outputArgs(String args);
 }

@@ -2,7 +2,6 @@ package com.company.input;
 
 
 public interface DataInput {
-    Double getDouble();
-
+    Integer getInteger();
     String getString();
 }

@@ -20,39 +20,39 @@ public class Calculator {
 
     void exec() {
         while (true) {
-            double a, b;
+            int sc;
+            String a,b;
             String op;
+
+            System.out.print("Введите систему счисления(2, 10, 16): ");
+            sc = dataInput.getInteger();
+
             System.out.print("Введите первый аргумент: ");
-            try {
-                a = dataInput.getDouble();
-            } catch (NumberFormatException e) {
-                if (e.getMessage().equalsIgnoreCase("Empty string")) {
-                    System.out.println("Выход !!!");
-                    break;
-                } else {
-                    System.out.println("Аргумент задан неверно !!!");
-                    continue;
-                }
-            }
+            a = dataInput.getString();
+
             System.out.print("Введите операцию(+,-,*,/): ");
             op = dataInput.getString();
             Operation operation;
+
             try {
                 operation = operFact.getOpInstance(op);
             } catch (OperationNotFoundException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
+
             System.out.print("Введите второй аргумент: ");
+                b = dataInput.getString();
+
             try {
-                b = dataInput.getDouble();
-            } catch (NumberFormatException e) {
-                System.out.println("Аргумент задан неверно !!!");
+                dataOutput.outputArgs(a + op + b + "=");
+                dataOutput.outputRez(operation.doOperation(Integer.parseInt(a, sc), Integer.parseInt(b, sc)),sc);
+            }catch (NumberFormatException e) {
+                System.out.println("Аргументы заданы неверно !!!");
                 continue;
             }
-            dataOutput.Output(a + op + b + "=" + operation.doOperation(a, b));
 
         }
 
-    }
+}
 }
