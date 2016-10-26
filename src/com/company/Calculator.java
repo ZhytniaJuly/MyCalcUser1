@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.countSystem.CountSystem;
 import com.company.input.DataInput;
 import com.company.input.console.ConsoleDataInput;
 import com.company.opFactory.OperationFactory;
@@ -20,12 +21,12 @@ public class Calculator {
 
     void exec() {
         while (true) {
-            int sc;
+            CountSystem countSystem;
             String a,b;
             String op;
 
             System.out.print("Введите систему счисления(2, 10, 16): ");
-            sc = dataInput.getInteger();
+            countSystem = CountSystem.getCountSystemByRange(dataInput.getInteger());
 
             System.out.print("Введите первый аргумент: ");
             a = dataInput.getString();
@@ -46,12 +47,11 @@ public class Calculator {
 
             try {
                 dataOutput.outputArgs(a + op + b + "=");
-                dataOutput.outputRez(operation.doOperation(Integer.parseInt(a, sc), Integer.parseInt(b, sc)),sc);
+                dataOutput.outputRez(operation.doOperation(Integer.parseInt(a, countSystem.getRang()), Integer.parseInt(b, countSystem.getRang())),countSystem);
             }catch (NumberFormatException e) {
                 System.out.println("Аргументы заданы неверно !!!");
                 continue;
             }
-
         }
 
 }
