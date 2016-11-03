@@ -71,33 +71,28 @@ public class MyCalculator {
     }
 
     private void returnLastAction() {
-        for (Map.Entry<String, List<Integer>> entry : newMap.entrySet()) {
-            if (nameOperator.equals(entry.getKey())) {
-                List<Integer> value = entry.getValue();
-                value.remove(value.size()-1);
-                System.out.println();
-                System.out.println("Пoследний результат после удаления ");
-                dataOutput.outputRez(value.get(value.size()-1), countSystem);
-                System.out.println("");
-                }
-
-            }
-        }
+        List<Integer> resultsByOperator = newMap.get(nameOperator);
+        resultsByOperator.remove(resultsByOperator.size()-1);
+        System.out.println();
+        System.out.println("Пoследний результат после удаления ");
+        dataOutput.outputRez(resultsByOperator.get(resultsByOperator.size()-1), countSystem);
+        System.out.println("");
+    }
 
 
     public void operatorInputConsole() {
         System.out.printf("Введите оператора ");
         nameOperator = dataInput.getString();
         newMap.putIfAbsent(nameOperator, new ArrayList<>());
-        System.out.print("Введите систему счисления(2, 10, 16): ");
-        countSystem = CountSystem.getCountSystemByRange(dataInput.getInteger());
+//        System.out.print("Введите систему счисления(2, 10, 16): ");
+//        countSystem = CountSystem.getCountSystemByRange(dataInput.getInteger());
 
     }
 
 
     public void dataInputConsole() {
-//        System.out.print("Введите систему счисления(2, 10, 16): ");
-//        countSystem = CountSystem.getCountSystemByRange(dataInput.getInteger());
+        System.out.print("Введите систему счисления(2, 10, 16): ");
+        countSystem = CountSystem.getCountSystemByRange(dataInput.getInteger());
 
         System.out.print("Введите первый аргумент: ");
         argument1 = dataInput.getString();
@@ -109,7 +104,6 @@ public class MyCalculator {
             operation = operFact.getOpInstance(op);
         } catch (OperationNotFoundException e) {
             System.out.println(e.getMessage());
-
         }
 
         System.out.print("Введите второй аргумент: ");
@@ -140,17 +134,14 @@ public class MyCalculator {
     }
 
     public void dataOutputRezOfCurrentUser() {
-        for (Map.Entry<String, List<Integer>> entry : newMap.entrySet()) {
-            if (nameOperator.equals(entry.getKey())) {
-                System.out.print(entry.getKey() + " | ");
-                List<Integer> value = entry.getValue();
-                for (int i = 0; i < value.size(); i++) {
-                    int result = value.get(i);
-                    dataOutput.outputRez(result, countSystem);
-                }
-                System.out.println();
-            }
+        List<Integer> resultsByOperator = newMap.get(nameOperator);
+        resultsByOperator.remove(resultsByOperator.size()-1);
+        System.out.print(nameOperator + " | ");
+
+        for (Integer result: resultsByOperator) {
+            dataOutput.outputRez(result, countSystem);
         }
+        System.out.println();
     }
 }
 
