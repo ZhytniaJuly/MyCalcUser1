@@ -44,6 +44,7 @@ public class MyCalculator {
                     operatorInputConsole();
                     dataInputConsole();
                     makeOperation();
+                    dataOutputConsoleResultOfOperation();
                     //dataOutputConsoleResultOfOperation();
                     continue;
                 case "2":
@@ -116,10 +117,10 @@ public class MyCalculator {
         newMap.get(nameOperator).add(result);
     }
 
-//    public void dataOutputConsoleResultOfOperation() {
-//        System.out.print("Results ");
-//        dataOutput.outputRez(result, countSystem);
-//    }
+    public void dataOutputConsoleResultOfOperation() {
+        System.out.print("Results ");
+        dataOutput.outputRez(result, countSystem);
+    }
 
     public void dataOutputConsoleResultOfAllUsers() {
         for (Map.Entry<String, List<Integer>> entry : newMap.entrySet()) {
@@ -135,10 +136,9 @@ public class MyCalculator {
 
     public void dataOutputRezOfCurrentUser() {
         List<Integer> resultsByOperator = newMap.get(nameOperator);
-        resultsByOperator.remove(resultsByOperator.size()-1);
         System.out.print(nameOperator + " | ");
-
-        for (Integer result: resultsByOperator) {
+        for (int i = 0; i < resultsByOperator.size(); i++) {
+            Integer result = resultsByOperator.get(i);
             dataOutput.outputRez(result, countSystem);
         }
         System.out.println();
